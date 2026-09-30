@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdalluh Alswalmeh | Software Developer & AI Enthusiast</title>
+  <meta name="description" content="Portfolio of Abdalluh Hider Said Alswalmeh - Fresh Graduate / Junior Software & AI Developer from Jordan University of Science and Technology (JUST). Experienced in Full-Stack, Python, AI, Information Retrieval, and Databases.">
+  <meta name="keywords" content="Abdalluh Alswalmeh, Software Developer, Junior Developer Jordan, AI Enthusiast, Full Stack, Python, Flask, Information Retrieval, TF-IDF, JUST, Jordan">
+  <meta name="author" content="Abdalluh Hider Said Alswalmeh">
+  <meta property="og:title" content="Abdalluh Alswalmeh | Software Developer & AI Enthusiast">
+  <meta property="og:description" content="Fresh Graduate from Jordan University of Science and Technology specializing in Software Engineering, Web Development, AI, and Information Retrieval.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#050505">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#050505',
+            brandCard: '#0B0B0F',
+            brandCardHover: '#13131A',
+            brandBorder: '#1F2430',
+            cyanAccent: '#00E5FF',
+            purpleAccent: '#7C3AED',
+            mutedGray: '#9CA3AF'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 25px -5px rgba(0, 229, 255, 0.45)',
+            'glow-purple': '0 0 25px -5px rgba(124, 58, 237, 0.45)',
+            'glow-card': '0 10px 30px -10px rgba(0, 229, 255, 0.15)',
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'scanline': 'scanline 8s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #050505;
+      color: #FFFFFF;
+      overflow-x: hidden;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050505;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2430;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00E5FF;
+    }
+
+    /* Subtle Glassmorphism Card Style */
+    .glass-card {
+      background: rgba(11, 11, 15, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 229, 255, 0.4);
+      box-shadow: 0 10px 30px -5px rgba(0, 229, 255, 0.12);
+    }
+
+    /* Interactive Dot Grid Background */
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    }
+
+    /* Custom Cursor */
+    @media (pointer: fine) {
+      .custom-cursor-dot {
+        pointer-events: none;
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background-color: #00E5FF;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.15s, height 0.15s, opacity 0.15s;
+        z-index: 9999;
+      }
+      .custom-cursor-ring {
+        pointer-events: none;
+        position: fixed;
+        width: 34px;
+        height: 34px;
+        border: 1.5px solid rgba(0, 229, 255, 0.5);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: transform 0.08s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+        z-index: 9998;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-cyanAccent selection:text-brandDark relative font-sans antialiased">
+
+  <!-- Custom Cursor Elements -->
+  <div id="cursor-dot" class="custom-cursor-dot hidden md:block"></div>
+  <div id="cursor-ring" class="custom-cursor-ring hidden md:block"></div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="fixed top-0 left-0 w-full h-[3px] z-[100] bg-transparent">
+    <div id="scroll-progress" class="h-full bg-gradient-to-r from-cyanAccent via-purpleAccent to-cyanAccent w-0 transition-all duration-75"></div>
+  </div>
+
+  <!-- Background Canvas for Interactive Particles -->
+  <canvas id="particles-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0 opacity-30"></div>
+
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo / Name -->
+      <a href="#home" class="group flex items-center space-x-3 text-white">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyanAccent/20 to-purpleAccent/20 border border-cyanAccent/40 flex items-center justify-center font-mono font-bold text-cyanAccent group-hover:scale-105 transition-transform duration-300">
+          A<span class="text-purpleAccent">A</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold tracking-tight text-sm sm:text-base group-hover:text-cyanAccent transition-colors">Abdalluh Alswalmeh</span>
+          <span class="text-[10px] font-mono text-mutedGray tracking-wider uppercase">Junior Dev • JUST</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center space-x-1 glass-card px-4 py-1.5 rounded-full border border-white/10">
+        <a href="#home" class="nav-link text-xs uppercase tracking-wider font-mono px-4 py-2 rounded-full text-mutedGray hover:text-white transition-colors duration-200">Home</a>
+        <a href="#about" class="nav-link text-xs uppercase tracking-wider font-mono px-4 py-2 rounded-full text-mutedGray hover:text-white transition-colors duration-200">About</a>
+        <a href="#skills" class="nav-link text-xs uppercase tracking-wider font-mono px-4 py-2 rounded-full text-mutedGray hover:text-white transition-colors duration-200">Skills</a>
+        <a href="#projects" class="nav-link text-xs uppercase tracking-wider font-mono px-4 py-2 rounded-full text-mutedGray hover:text-white transition-colors duration-200">Projects</a>
+        <a href="#pipeline" class="nav-link text-xs uppercase tracking-wider font-mono px-4 py-2 rounded-full text-mutedGray hover:text-white transition-colors duration-200">IR Pipeline</a>
+        <a href="#education" class="nav-link text-xs uppercase tracking-wider font-mono px-4 py-2 rounded-full text-mutedGray hover:text-white transition-colors duration-200">Education</a>
+        <a href="#contact" class="nav-link text-xs uppercase tracking-wider font-mono px-4 py-2 rounded-full text-mutedGray hover:text-white transition-colors duration-200">Contact</a>
+      </nav>
+
+      <!-- Desktop CTA & Social Icons -->
+      <div class="hidden md:flex items-center space-x-3">
+        <a href="#contact" class="relative group overflow-hidden px-4 py-2 rounded-xl text-xs font-mono font-semibold text-brandDark bg-cyanAccent hover:bg-cyan-300 transition-all duration-300 shadow-glow-cyan flex items-center gap-2">
+          <span>Let's Talk</span>
+          <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-white hover:text-cyanAccent focus:outline-none" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars-staggered text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 rounded-2xl p-6 border border-white/10 mt-2 space-y-4 shadow-2xl transition-all duration-300">
+      <div class="flex flex-col space-y-3 font-mono text-sm">
+        <a href="#home" class="mobile-nav-link text-mutedGray hover:text-cyanAccent py-2 border-b border-white/5">01 // Home</a>
+        <a href="#about" class="mobile-nav-link text-mutedGray hover:text-cyanAccent py-2 border-b border-white/5">02 // About</a>
+        <a href="#skills" class="mobile-nav-link text-mutedGray hover:text-cyanAccent py-2 border-b border-white/5">03 // Skills</a>
+        <a href="#projects" class="mobile-nav-link text-mutedGray hover:text-cyanAccent py-2 border-b border-white/5">04 // Projects</a>
+        <a href="#pipeline" class="mobile-nav-link text-mutedGray hover:text-cyanAccent py-2 border-b border-white/5">05 // IR Pipeline</a>
+        <a href="#education" class="mobile-nav-link text-mutedGray hover:text-cyanAccent py-2 border-b border-white/5">06 // Education</a>
+        <a href="#contact" class="mobile-nav-link text-mutedGray hover:text-cyanAccent py-2">07 // Contact</a>
+      </div>
+      <div class="pt-2 flex gap-3">
+        <a href="#cv-section" class="w-full text-center py-2.5 rounded-xl font-mono text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/10">View CV</a>
+        <a href="#contact" class="w-full text-center py-2.5 rounded-xl font-mono text-xs font-semibold bg-cyanAccent text-brandDark">Contact Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-20">
+    <section id="home" class="min-h-[calc(100vh-5rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden py-12">
+      <!-- Glow ambient orbs -->
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyanAccent/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purpleAccent/15 rounded-full blur-[140px] pointer-events-none animate-pulse-slow"></div>
+
+      <div class="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-8 hover:border-cyanAccent/50 transition-colors">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyanAccent opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyanAccent"></span>
+          </span>
+          <span class="font-mono text-xs font-medium text-cyanAccent tracking-wide">Available for Junior / Entry-Level Roles</span>
+          <span class="text-white/30 text-xs">•</span>
+          <span class="text-xs text-mutedGray flex items-center gap-1.5">
+            <i class="fa-solid fa-location-dot text-[11px] text-purpleAccent"></i> Jordan
+          </span>
+        </div>
+
+        <!-- Name Display -->
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          Hi, I'm <span class="bg-gradient-to-r from-white via-cyanAccent to-purpleAccent bg-clip-text text-transparent">Abdalluh Alswalmeh</span>
+        </h1>
+
+        <!-- Headline -->
+        <p class="font-mono text-base sm:text-xl text-cyanAccent/90 font-medium mb-5 tracking-tight flex items-center justify-center flex-wrap gap-2">
+          <span>Software Developer</span>
+          <span class="text-purpleAccent">•</span>
+          <span>AI Enthusiast</span>
+          <span class="text-purpleAccent">•</span>
+          <span>Full-Stack Developer</span>
+        </p>
+
+        <!-- Supporting text -->
+        <p class="text-mutedGray text-base sm:text-lg max-w-2xl leading-relaxed mb-10 font-normal">
+          Fresh graduate from Jordan University of Science and Technology. Building practical digital solutions with Python, Web Technologies, AI, Information Retrieval, and Database Systems.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center justify-center gap-4 w-full sm:w-auto">
+          <a href="#projects" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-mono text-sm font-semibold bg-cyanAccent text-brandDark hover:bg-cyan-300 hover:shadow-glow-cyan transition-all duration-300 flex items-center justify-center gap-2 group">
+            <i class="fa-solid fa-code text-xs"></i>
+            <span>View My Projects</span>
+            <i class="fa-solid fa-arrow-down text-xs group-hover:translate-y-0.5 transition-transform"></i>
+          </a>
+
+          <a href="#cv-section" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-mono text-sm font-semibold bg-brandCard hover:bg-brandCardHover border border-white/10 hover:border-purpleAccent/50 text-white transition-all duration-300 flex items-center justify-center gap-2 group">
+            <i class="fa-solid fa-file-lines text-purpleAccent"></i>
+            <span>Download CV</span>
+          </a>
+
+          <a href="#contact" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-mono text-sm font-semibold bg-transparent hover:bg-white/5 border border-white/10 text-mutedGray hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+            <i class="fa-regular fa-paper-plane text-xs"></i>
+            <span>Contact Me</span>
+          </a>
+        </div>
+
+        <!-- Tech stack icons row -->
+        <div class="mt-14 pt-8 border-t border-white/10 w-full flex flex-wrap items-center justify-center gap-6 text-mutedGray/60 text-xl">
+          <span class="text-xs font-mono uppercase tracking-wider text-mutedGray/80 mr-2">Core Tech:</span>
+          <span title="Python" class="hover:text-cyanAccent transition-colors"><i class="fa-brands fa-python"></i></span>
+          <span title="JavaScript" class="hover:text-cyanAccent transition-colors"><i class="fa-brands fa-js"></i></span>
+          <span title="HTML5 & CSS3" class="hover:text-cyanAccent transition-colors"><i class="fa-brands fa-html5"></i></span>
+          <span title="Databases / SQL" class="hover:text-cyanAccent transition-colors"><i class="fa-solid fa-database"></i></span>
+          <span title="Artificial Intelligence" class="hover:text-purpleAccent transition-colors"><i class="fa-solid fa-brain"></i></span>
+          <span title="Git & GitHub" class="hover:text-cyanAccent transition-colors"><i class="fa-brands fa-git-alt"></i></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 border-y border-white/10 bg-brandDark/80 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center" id="stats-counter-container">
+          <!-- Stat 1 -->
+          <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-cyanAccent/5 rounded-full blur-xl group-hover:bg-cyanAccent/15 transition-colors"></div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-white mb-1 group-hover:text-cyanAccent transition-colors">
+              2022–2026
+            </div>
+            <p class="text-xs sm:text-sm font-mono text-mutedGray uppercase tracking-wider">Education (JUST)</p>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-purpleAccent/5 rounded-full blur-xl group-hover:bg-purpleAccent/15 transition-colors"></div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-white mb-1 group-hover:text-purpleAccent transition-colors">
+              <span class="counter-number" data-target="3">0</span><span class="text-purpleAccent">+</span>
+            </div>
+            <p class="text-xs sm:text-sm font-mono text-mutedGray uppercase tracking-wider">Core Dev Areas</p>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-cyanAccent/5 rounded-full blur-xl group-hover:bg-cyanAccent/15 transition-colors"></div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-white mb-1 group-hover:text-cyanAccent transition-colors">
+              AI + Web
+            </div>
+            <p class="text-xs sm:text-sm font-mono text-mutedGray uppercase tracking-wider">Main Focus</p>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-purpleAccent/5 rounded-full blur-xl group-hover:bg-purpleAccent/15 transition-colors"></div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-white mb-1 group-hover:text-purpleAccent transition-colors">
+              SGPMS
+            </div>
+            <p class="text-xs sm:text-sm font-mono text-mutedGray uppercase tracking-wider">Featured Project</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-12">
+        <span class="font-mono text-xs text-cyanAccent tracking-widest uppercase">01 // Overview</span>
+        <div class="h-[1px] bg-white/10 flex-grow"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Developer Profile Card -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+          <div class="relative w-full max-w-md">
+            <!-- Glowing gradient frame -->
+            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyanAccent via-purpleAccent to-cyanAccent opacity-30 blur-lg group-hover:opacity-60 transition duration-700"></div>
+
+            <div class="relative glass-card rounded-3xl p-6 sm:p-8 overflow-hidden border border-white/10">
+              <!-- Profile Avatar Section -->
+              <div class="relative mx-auto w-44 h-44 rounded-2xl overflow-hidden mb-6 border-2 border-cyanAccent/40 shadow-glow-cyan bg-brandCard">
+                <!-- User provided portrait photo -->
+                <img 
+                  src="5527d43c-7a30-4bdc-9333-f4f0c3f110e7.jpg" 
+                  alt="Abdalluh Hider Said Alswalmeh"
+                  class="w-full h-full object-cover object-center filter contrast-105"
+                  onerror="this.onerror=null; this.src='https://placehold.co/400x400/0B0B0F/00E5FF?text=Abdalluh+Alswalmeh';"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-brandDark/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-2 left-2 text-[10px] font-mono bg-brandDark/90 px-2 py-0.5 rounded text-cyanAccent border border-cyanAccent/30">
+                  JUST 2022-2026
+                </div>
+              </div>
+
+              <!-- Mini Identity Info -->
+              <div class="text-center mb-6">
+                <h3 class="text-lg font-bold text-white">Abdalluh Hider Said Alswalmeh</h3>
+                <p class="text-xs font-mono text-cyanAccent mt-0.5">Fresh Graduate • Software & AI</p>
+                <p class="text-xs text-mutedGray flex items-center justify-center gap-1 mt-1">
+                  <i class="fa-solid fa-graduation-cap text-purpleAccent"></i> Jordan University of Science and Technology
+                </p>
+              </div>
+
+              <!-- Education Timeline snippet -->
+              <div class="space-y-3 font-mono text-xs border-t border-white/10 pt-4">
+                <div class="flex items-start gap-3">
+                  <span class="text-cyanAccent font-semibold min-w-[42px]">2022</span>
+                  <div>
+                    <p class="text-white font-medium">Began University Journey</p>
+                    <p class="text-[11px] text-mutedGray">Jordan University of Science and Technology</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-purpleAccent font-semibold min-w-[42px]">2026</span>
+                  <div>
+                    <p class="text-white font-medium">Bachelor's Degree Graduation</p>
+                    <p class="text-[11px] text-mutedGray">Ready for impact in industry software roles</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Terminal-style pill footer -->
+              <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-[11px] font-mono text-mutedGray">
+                <span><i class="fa-solid fa-circle text-emerald-400 text-[8px] mr-1"></i>Open to work</span>
+                <span class="text-cyanAccent/80">Jordan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Professional Narrative -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="space-y-2">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Driven by curiosity, grounded in solid software principles.
+            </h2>
+            <div class="h-1 w-20 bg-gradient-to-r from-cyanAccent to-purpleAccent rounded-full"></div>
+          </div>
+
+          <div class="text-mutedGray space-y-4 text-sm sm:text-base leading-relaxed font-normal">
+            <p>
+              I am a fresh graduate from the <span class="text-white font-medium">Jordan University of Science and Technology (JUST)</span>, where I spent 2022 to 2026 building an adaptable, rigorous foundation in software engineering, modern web technologies, and computational intelligence.
+            </p>
+            <p>
+              Rather than merely studying abstract concepts, I prioritize hands-on problem solving. From architecting web management platforms with reliable relational databases (<span class="text-cyanAccent font-mono">SQL, Oracle, MySQL</span>) to developing backend logic with <span class="text-cyanAccent font-mono">Python & Flask</span> and exploring Information Retrieval models like <span class="text-cyanAccent font-mono">TF-IDF</span> and vector similarity, I enjoy unraveling technical complexity into clean, workable systems.
+            </p>
+            <p>
+              As an entry-level software developer, I bring high enthusiasm, clean code discipline, and a strong drive for continuous learning. I am eager to join a collaborative engineering team where I can contribute to real-world codebases, learn alongside experienced mentors, and make measurable contributions.
+            </p>
+          </div>
+
+          <!-- Highlight Badges -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div class="glass-card p-3.5 rounded-xl border border-white/10 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-cyanAccent/10 text-cyanAccent flex items-center justify-center font-mono text-sm">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-semibold text-white">Full-Stack Foundations</h4>
+                <p class="text-[11px] text-mutedGray">Responsive UI + Robust Backends</p>
+              </div>
+            </div>
+
+            <div class="glass-card p-3.5 rounded-xl border border-white/10 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-purpleAccent/10 text-purpleAccent flex items-center justify-center font-mono text-sm">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-semibold text-white">AI & Search Concepts</h4>
+                <p class="text-[11px] text-mutedGray">IR pipelines, NLP & Transformers</p>
+              </div>
+            </div>
+
+            <div class="glass-card p-3.5 rounded-xl border border-white/10 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-cyanAccent/10 text-cyanAccent flex items-center justify-center font-mono text-sm">
+                <i class="fa-solid fa-database"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-semibold text-white">Relational Data Systems</h4>
+                <p class="text-[11px] text-mutedGray">Oracle, MySQL, SQL Schemas</p>
+              </div>
+            </div>
+
+            <div class="glass-card p-3.5 rounded-xl border border-white/10 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-purpleAccent/10 text-purpleAccent flex items-center justify-center font-mono text-sm">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-semibold text-white">Pragmatic Problem Solver</h4>
+                <p class="text-[11px] text-mutedGray">Data Structures, Algorithms, Git</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-brandCard/30 rounded-3xl border border-white/5 my-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="font-mono text-xs text-cyanAccent tracking-widest uppercase">02 // Capabilities</span>
+        <div class="h-[1px] bg-white/10 flex-grow"></div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Technical Toolset</h2>
+          <p class="text-mutedGray text-sm mt-2 max-w-xl">
+            Practical skills acquired through academic degree coursework at JUST and self-directed software projects.
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0 font-mono text-xs text-mutedGray">
+          <span class="text-cyanAccent">Hover cards</span> for contextual details
+        </div>
+      </div>
+
+      <!-- Skills Grid categorized as requested -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 01 Programming -->
+        <div class="glass-card p-6 rounded-2xl group transition-all duration-300 relative overflow-hidden">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-xs text-cyanAccent tracking-wider">01 // CORE</span>
+            <div class="w-8 h-8 rounded-lg bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-sm group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-code"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Programming</h3>
+          <p class="text-xs text-mutedGray mb-4">Core languages used for scripting, algorithmic problem solving, and application logic.</p>
+          <div class="flex flex-wrap gap-2">
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-cyanAccent/40 transition-colors">
+              <i class="fa-brands fa-python text-cyanAccent mr-1.5"></i>Python
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-cyanAccent/40 transition-colors">
+              <i class="fa-brands fa-js text-yellow-400 mr-1.5"></i>JavaScript
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 Frontend -->
+        <div class="glass-card p-6 rounded-2xl group transition-all duration-300 relative overflow-hidden">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-xs text-purpleAccent tracking-wider">02 // CLIENT</span>
+            <div class="w-8 h-8 rounded-lg bg-purpleAccent/10 text-purpleAccent flex items-center justify-center text-sm group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-desktop"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Frontend Development</h3>
+          <p class="text-xs text-mutedGray mb-4">Structuring semantic web layouts, reactive user controls, and responsive UI components.</p>
+          <div class="flex flex-wrap gap-2">
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-purpleAccent/40 transition-colors">
+              <i class="fa-brands fa-html5 text-orange-400 mr-1.5"></i>HTML5
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-purpleAccent/40 transition-colors">
+              <i class="fa-brands fa-css3-alt text-blue-400 mr-1.5"></i>CSS3
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-purpleAccent/40 transition-colors">
+              <i class="fa-brands fa-js text-yellow-400 mr-1.5"></i>JavaScript DOM
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 Backend -->
+        <div class="glass-card p-6 rounded-2xl group transition-all duration-300 relative overflow-hidden">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-xs text-cyanAccent tracking-wider">03 // SERVER</span>
+            <div class="w-8 h-8 rounded-lg bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-sm group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-server"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Backend Development</h3>
+          <p class="text-xs text-mutedGray mb-4">RESTful interfaces, request routing, server execution, and database integration.</p>
+          <div class="flex flex-wrap gap-2">
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-cyanAccent/40 transition-colors">
+              <i class="fa-brands fa-python text-cyanAccent mr-1.5"></i>Python
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-cyanAccent/40 transition-colors">
+              <i class="fa-solid fa-network-wired text-purpleAccent mr-1.5"></i>Flask Framework
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 AI & Information Retrieval -->
+        <div class="glass-card p-6 rounded-2xl group transition-all duration-300 relative overflow-hidden">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-xs text-purpleAccent tracking-wider">04 // INTELLIGENCE</span>
+            <div class="w-8 h-8 rounded-lg bg-purpleAccent/10 text-purpleAccent flex items-center justify-center text-sm group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">AI & Information Retrieval</h3>
+          <p class="text-xs text-mutedGray mb-4">Document indexing, text vectorization, similarity metrics, and modern NLP foundational concepts.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white">TF-IDF</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white">Sentence Transformers</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white">Information Retrieval</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white">NLP Fundamentals</span>
+          </div>
+        </div>
+
+        <!-- 05 Databases -->
+        <div class="glass-card p-6 rounded-2xl group transition-all duration-300 relative overflow-hidden">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-xs text-cyanAccent tracking-wider">05 // DATA STORAGE</span>
+            <div class="w-8 h-8 rounded-lg bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-sm group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-database"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Database Systems</h3>
+          <p class="text-xs text-mutedGray mb-4">Schema design, query optimization, data normalization, and relational integrity.</p>
+          <div class="flex flex-wrap gap-2">
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-cyanAccent/40 transition-colors">
+              <i class="fa-solid fa-table text-cyanAccent mr-1.5"></i>SQL
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-cyanAccent/40 transition-colors">
+              <i class="fa-solid fa-database text-red-400 mr-1.5"></i>Oracle Database
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-cyanAccent/40 transition-colors">
+              <i class="fa-solid fa-database text-blue-400 mr-1.5"></i>MySQL
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 Tools & Workflow -->
+        <div class="glass-card p-6 rounded-2xl group transition-all duration-300 relative overflow-hidden">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-xs text-purpleAccent tracking-wider">06 // WORKFLOW</span>
+            <div class="w-8 h-8 rounded-lg bg-purpleAccent/10 text-purpleAccent flex items-center justify-center text-sm group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Tools & Productivity</h3>
+          <p class="text-xs text-mutedGray mb-4">Version control, team workflows, technical problem-solving, and structured project documentation.</p>
+          <div class="flex flex-wrap gap-2">
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-purpleAccent/40 transition-colors">
+              <i class="fa-brands fa-git-alt text-orange-400 mr-1.5"></i>Git
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-purpleAccent/40 transition-colors">
+              <i class="fa-brands fa-github text-white mr-1.5"></i>GitHub
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-white group-hover:border-purpleAccent/40 transition-colors">
+              <i class="fa-solid fa-file-excel text-emerald-400 mr-1.5"></i>Excel / Word
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="font-mono text-xs text-cyanAccent tracking-widest uppercase">03 // Portfolio Showcase</span>
+        <div class="h-[1px] bg-white/10 flex-grow"></div>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Key Projects</h2>
+        <p class="text-mutedGray text-sm mt-2 max-w-xl">
+          Real software systems engineered to solve real institutional and algorithmic challenges.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        <!-- FEATURED PROJECT 1: SGPMS -->
+        <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-80 h-80 bg-cyanAccent/5 rounded-full blur-3xl pointer-events-none group-hover:bg-cyanAccent/10 transition-colors"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Left Info -->
+            <div class="lg:col-span-7 space-y-4">
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full text-[10px] font-mono font-semibold bg-cyanAccent/10 text-cyanAccent border border-cyanAccent/30">
+                  Featured Project
+                </span>
+                <span class="text-xs text-mutedGray font-mono">Full-Stack & Database</span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                SGPMS – Student Graduation Project Management System
+              </h3>
+
+              <p class="text-mutedGray text-sm sm:text-base leading-relaxed">
+                A dedicated web-based management system designed to systematically organize and oversee academic graduation projects, supervisor assignments, and student team data. Developed to replace cumbersome manual record keeping with an integrated digital workflow.
+              </p>
+
+              <!-- Main Highlights -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+                <div class="flex items-center gap-2 text-xs text-mutedGray font-mono">
+                  <i class="fa-solid fa-check text-cyanAccent"></i> Student & project record retrieval
+                </div>
+                <div class="flex items-center gap-2 text-xs text-mutedGray font-mono">
+                  <i class="fa-solid fa-check text-cyanAccent"></i> CRUD database operations
+                </div>
+                <div class="flex items-center gap-2 text-xs text-mutedGray font-mono">
+                  <i class="fa-solid fa-check text-cyanAccent"></i> Oracle SQL relational persistence
+                </div>
+                <div class="flex items-center gap-2 text-xs text-mutedGray font-mono">
+                  <i class="fa-solid fa-check text-cyanAccent"></i> Responsive web portal interface
+                </div>
+              </div>
+
+              <!-- Tech Badges -->
+              <div class="flex flex-wrap gap-2 pt-3">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-cyanAccent border border-cyanAccent/20">Web Development</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-cyanAccent border border-cyanAccent/20">SQL</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-cyanAccent border border-cyanAccent/20">Oracle</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-cyanAccent border border-cyanAccent/20">HTML / CSS / JS</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-cyanAccent border border-cyanAccent/20">Backend</span>
+              </div>
+
+              <!-- Action buttons -->
+              <div class="flex flex-wrap items-center gap-3 pt-4">
+                <button onclick="openProjectModal('sgpms')" class="px-5 py-2.5 rounded-xl font-mono text-xs font-semibold bg-cyanAccent text-brandDark hover:bg-cyan-300 transition-colors flex items-center gap-2">
+                  <i class="fa-regular fa-eye"></i> View Deep-Dive Details
+                </button>
+
+                <!-- Clean placeholders: no invented URLs -->
+                <button class="px-4 py-2.5 rounded-xl font-mono text-xs font-semibold bg-white/5 text-mutedGray border border-white/10 cursor-not-allowed opacity-75 flex items-center gap-2" title="Source repository available upon request">
+                  <i class="fa-brands fa-github"></i> GitHub (Request Access)
+                </button>
+
+                <button class="px-4 py-2.5 rounded-xl font-mono text-xs font-semibold bg-white/5 text-mutedGray border border-white/10 cursor-not-allowed opacity-75 flex items-center gap-2" title="Deployed within university internal network">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Internal System
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Interactive Graphic / Visual Card -->
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl border border-white/10 bg-brandDark/90 p-5 shadow-2xl relative">
+                <!-- Mac-style top dots -->
+                <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                  <div class="flex space-x-1.5">
+                    <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                  </div>
+                  <span class="text-[11px] font-mono text-mutedGray">sgpms_dashboard.sql</span>
+                </div>
+
+                <!-- Simulated SQL & Web Preview -->
+                <div class="space-y-3 font-mono text-xs text-mutedGray">
+                  <div class="text-cyanAccent/90">
+                    <span class="text-purpleAccent">SELECT</span> p.project_id, p.title, s.student_name<br>
+                    <span class="text-purpleAccent">FROM</span> graduation_projects p<br>
+                    <span class="text-purpleAccent">JOIN</span> students s <span class="text-purpleAccent">ON</span> p.id = s.project_id<br>
+                    <span class="text-purpleAccent">WHERE</span> status = <span class="text-emerald-400">'APPROVED'</span>;
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] space-y-1.5">
+                    <div class="flex justify-between text-white font-semibold border-b border-white/5 pb-1">
+                      <span>Project Record</span>
+                      <span class="text-emerald-400">200 OK</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Title:</span>
+                      <span class="text-white">Graduation Portal v1</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Database:</span>
+                      <span class="text-cyanAccent">Oracle / Relational</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>CRUD State:</span>
+                      <span class="text-purpleAccent">Synchronized</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-[10px] font-mono text-mutedGray">
+                  <span>Backend: Flask / Web API</span>
+                  <span class="text-cyanAccent">JUST Academic System</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: Mini Search Engine -->
+        <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-80 h-80 bg-purpleAccent/5 rounded-full blur-3xl pointer-events-none group-hover:bg-purpleAccent/10 transition-colors"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Left Info -->
+            <div class="lg:col-span-7 space-y-4">
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full text-[10px] font-mono font-semibold bg-purpleAccent/10 text-purpleAccent border border-purpleAccent/30">
+                  AI & Information Retrieval
+                </span>
+                <span class="text-xs text-mutedGray font-mono">NLP / 20 Newsgroups Dataset</span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Mini Search Engine & Information Retrieval System
+              </h3>
+
+              <p class="text-mutedGray text-sm sm:text-base leading-relaxed">
+                An Information Retrieval search system developed using Python to index and retrieve relevant documents from the classic <em>20 Newsgroups</em> corpus. Implements full text-processing pipelines, mathematical term-weighting via TF-IDF, and Cosine vector similarity.
+              </p>
+
+              <!-- Technical Features Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+                <div class="flex items-center gap-2 text-xs text-mutedGray font-mono">
+                  <i class="fa-solid fa-check text-purpleAccent"></i> Document preprocessing & cleaning
+                </div>
+                <div class="flex items-center gap-2 text-xs text-mutedGray font-mono">
+                  <i class="fa-solid fa-check text-purpleAccent"></i> Tokenization & Stop-word removal
+                </div>
+                <div class="flex items-center gap-2 text-xs text-mutedGray font-mono">
+                  <i class="fa-solid fa-check text-purpleAccent"></i> Porter Stemmer vocabulary reduction
+                </div>
+                <div class="flex items-center gap-2 text-xs text-mutedGray font-mono">
+                  <i class="fa-solid fa-check text-purpleAccent"></i> Cosine Similarity Top-K document ranking
+                </div>
+              </div>
+
+              <!-- Tech Badges -->
+              <div class="flex flex-wrap gap-2 pt-3">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-purpleAccent border border-purpleAccent/20">Python</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-purpleAccent border border-purpleAccent/20">TF-IDF</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-purpleAccent border border-purpleAccent/20">Cosine Similarity</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-purpleAccent border border-purpleAccent/20">Vector Space Model</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-purpleAccent border border-purpleAccent/20">20 Newsgroups</span>
+              </div>
+
+              <!-- Action buttons -->
+              <div class="flex flex-wrap items-center gap-3 pt-4">
+                <button onclick="openProjectModal('searchengine')" class="px-5 py-2.5 rounded-xl font-mono text-xs font-semibold bg-purpleAccent text-white hover:bg-purple-600 transition-colors flex items-center gap-2">
+                  <i class="fa-regular fa-eye"></i> View Pipeline Details
+                </button>
+
+                <button class="px-4 py-2.5 rounded-xl font-mono text-xs font-semibold bg-white/5 text-mutedGray border border-white/10 cursor-not-allowed opacity-75 flex items-center gap-2" title="Source code and benchmark evaluation available on request">
+                  <i class="fa-brands fa-github"></i> GitHub (Request Access)
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Interactive Graphic -->
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl border border-white/10 bg-brandDark/90 p-5 shadow-2xl relative font-mono text-xs">
+                <!-- Mac-style top dots -->
+                <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                  <div class="flex space-x-1.5">
+                    <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                  </div>
+                  <span class="text-[11px] text-mutedGray">ir_engine.py</span>
+                </div>
+
+                <!-- Code preview -->
+                <div class="space-y-2 text-mutedGray">
+                  <p><span class="text-cyanAccent">query_vec</span> = compute_tfidf(query)</p>
+                  <p><span class="text-purpleAccent">for</span> doc_id, doc_vec <span class="text-purpleAccent">in</span> index.items():</p>
+                  <p class="pl-4">sim = dot(query_vec, doc_vec) / (norm(q)*norm(d))</p>
+                  <p class="pl-4">rankings.append((doc_id, sim))</p>
+                  <p><span class="text-cyanAccent">return</span> sorted(rankings, key=lambda x: x[1])[:K]</p>
+                </div>
+
+                <!-- Simulation Output -->
+                <div class="mt-4 p-3 rounded-xl bg-purpleAccent/5 border border-purpleAccent/20 text-[11px] space-y-1">
+                  <span class="text-purpleAccent font-semibold block">Query: "Artificial Intelligence in Medicine"</span>
+                  <div class="flex justify-between text-mutedGray">
+                    <span>Doc #4029 [sci.med]</span>
+                    <span class="text-white font-mono">Score: 0.892</span>
+                  </div>
+                  <div class="flex justify-between text-mutedGray">
+                    <span>Doc #1184 [comp.ai]</span>
+                    <span class="text-white font-mono">Score: 0.841</span>
+                  </div>
+                  <div class="flex justify-between text-mutedGray">
+                    <span>Doc #7802 [sci.space]</span>
+                    <span class="text-white font-mono">Score: 0.720</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pipeline" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="font-mono text-xs text-cyanAccent tracking-widest uppercase">04 // Algorithmic Architecture</span>
+        <div class="h-[1px] bg-white/10 flex-grow"></div>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Information Retrieval Pipeline</h2>
+        <p class="text-mutedGray text-sm mt-2 max-w-2xl">
+          An interactive walkthrough of the end-to-end mathematical and computational process used to process unstructured text into ranked search results.
+        </p>
+      </div>
+
+      <!-- Pipeline Steps (Interactive Click & Hover) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-8" id="pipeline-nodes">
+        <!-- Step 1 -->
+        <button onclick="setPipelineStep(0)" class="pipeline-btn p-3.5 rounded-2xl glass-card text-center border border-cyanAccent/50 bg-cyanAccent/10 transition-all duration-300">
+          <div class="text-cyanAccent font-mono text-xs mb-1">01</div>
+          <div class="text-xs font-bold text-white">Documents</div>
+          <div class="text-[10px] text-mutedGray mt-1">Raw Corpus</div>
+        </button>
+
+        <!-- Step 2 -->
+        <button onclick="setPipelineStep(1)" class="pipeline-btn p-3.5 rounded-2xl glass-card text-center border border-white/10 hover:border-cyanAccent/40 transition-all duration-300">
+          <div class="text-cyanAccent font-mono text-xs mb-1">02</div>
+          <div class="text-xs font-bold text-white">Preprocessing</div>
+          <div class="text-[10px] text-mutedGray mt-1">Cleaning</div>
+        </button>
+
+        <!-- Step 3 -->
+        <button onclick="setPipelineStep(2)" class="pipeline-btn p-3.5 rounded-2xl glass-card text-center border border-white/10 hover:border-cyanAccent/40 transition-all duration-300">
+          <div class="text-cyanAccent font-mono text-xs mb-1">03</div>
+          <div class="text-xs font-bold text-white">Tokenization</div>
+          <div class="text-[10px] text-mutedGray mt-1">& Stemming</div>
+        </button>
+
+        <!-- Step 4 -->
+        <button onclick="setPipelineStep(3)" class="pipeline-btn p-3.5 rounded-2xl glass-card text-center border border-white/10 hover:border-purpleAccent/40 transition-all duration-300">
+          <div class="text-purpleAccent font-mono text-xs mb-1">04</div>
+          <div class="text-xs font-bold text-white">TF-IDF</div>
+          <div class="text-[10px] text-mutedGray mt-1">Weighting</div>
+        </button>
+
+        <!-- Step 5 -->
+        <button onclick="setPipelineStep(4)" class="pipeline-btn p-3.5 rounded-2xl glass-card text-center border border-white/10 hover:border-purpleAccent/40 transition-all duration-300">
+          <div class="text-purpleAccent font-mono text-xs mb-1">05</div>
+          <div class="text-xs font-bold text-white">Vector Space</div>
+          <div class="text-[10px] text-mutedGray mt-1">Embeddings</div>
+        </button>
+
+        <!-- Step 6 -->
+        <button onclick="setPipelineStep(5)" class="pipeline-btn p-3.5 rounded-2xl glass-card text-center border border-white/10 hover:border-cyanAccent/40 transition-all duration-300">
+          <div class="text-cyanAccent font-mono text-xs mb-1">06</div>
+          <div class="text-xs font-bold text-white">Similarity</div>
+          <div class="text-[10px] text-mutedGray mt-1">Cosine Metric</div>
+        </button>
+
+        <!-- Step 7 -->
+        <button onclick="setPipelineStep(6)" class="pipeline-btn p-3.5 rounded-2xl glass-card text-center border border-white/10 hover:border-cyanAccent/40 transition-all duration-300">
+          <div class="text-cyanAccent font-mono text-xs mb-1">07</div>
+          <div class="text-xs font-bold text-white">Ranking</div>
+          <div class="text-[10px] text-mutedGray mt-1">Sorting</div>
+        </button>
+
+        <!-- Step 8 -->
+        <button onclick="setPipelineStep(7)" class="pipeline-btn p-3.5 rounded-2xl glass-card text-center border border-white/10 hover:border-cyanAccent/40 transition-all duration-300">
+          <div class="text-emerald-400 font-mono text-xs mb-1">08</div>
+          <div class="text-xs font-bold text-white">Results</div>
+          <div class="text-[10px] text-mutedGray mt-1">Top-K Docs</div>
+        </button>
+      </div>
+
+      <!-- Pipeline Description Card -->
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border border-white/10 relative overflow-hidden" id="pipeline-display-card">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4 mb-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-cyanAccent" id="pipeline-step-badge">Stage 01 // Foundation</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mt-1" id="pipeline-title">Raw Document Collection</h3>
+          </div>
+          <div class="font-mono text-xs px-3 py-1 rounded bg-white/5 border border-white/10 text-mutedGray" id="pipeline-dataset-tag">
+            Target: 20 Newsgroups Dataset
+          </div>
+        </div>
+
+        <p class="text-sm sm:text-base text-mutedGray leading-relaxed mb-6" id="pipeline-description">
+          The pipeline begins with unformatted text documents collected from various newsgroup categories. These files contain raw headers, irregular punctuation, varied capitalizations, and unstructured linguistic data that must be normalized.
+        </p>
+
+        <div class="p-4 rounded-xl bg-brandDark/80 border border-white/5 font-mono text-xs text-cyanAccent" id="pipeline-technical-box">
+          <span class="text-mutedGray">// Technical Input / Operation:</span><br>
+          Corpus = [doc_1, doc_2, ... doc_N] across topics (sci.med, comp.graphics, rec.autos)
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="font-mono text-xs text-cyanAccent tracking-widest uppercase">05 // Academic Background</span>
+        <div class="h-[1px] bg-white/10 flex-grow"></div>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Education</h2>
+        <p class="text-mutedGray text-sm mt-2 max-w-xl">
+          Formal academic training at one of Jordan’s top engineering & science institutions.
+        </p>
+      </div>
+
+      <div class="relative border-l-2 border-white/10 ml-4 sm:ml-8 space-y-12 pb-6">
+        <!-- Graduation 2026 -->
+        <div class="relative pl-8 group">
+          <!-- Marker dot -->
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brandDark border-2 border-cyanAccent group-hover:scale-125 transition-transform duration-200"></div>
+
+          <div class="glass-card p-6 sm:p-8 rounded-2xl border border-white/10">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-medium bg-cyanAccent/10 text-cyanAccent border border-cyanAccent/20">
+                2022 – 2026
+              </span>
+              <span class="text-xs font-mono text-mutedGray flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-purpleAccent"></i> Irbid / Jordan
+              </span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-bold text-white mt-2">
+              Bachelor's Degree
+            </h3>
+            <p class="text-base text-cyanAccent font-medium mt-1">
+              Jordan University of Science and Technology (JUST)
+            </p>
+
+            <p class="text-mutedGray text-sm mt-4 leading-relaxed">
+              Curriculum focused on software engineering foundations, data structures and algorithms, database management systems, web development, information retrieval, data analysis, and applied artificial intelligence.
+            </p>
+
+            <div class="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-2 text-xs font-mono">
+              <span class="px-2.5 py-1 rounded bg-white/5 text-mutedGray">Data Structures</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 text-mutedGray">Algorithms</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 text-mutedGray">Database Systems</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 text-mutedGray">Information Retrieval</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 text-mutedGray">Software Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2022 Milestone -->
+        <div class="relative pl-8 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brandDark border-2 border-purpleAccent group-hover:scale-125 transition-transform duration-200"></div>
+
+          <div class="glass-card p-6 rounded-2xl border border-white/10">
+            <span class="px-3 py-1 rounded-full text-xs font-mono font-medium bg-purpleAccent/10 text-purpleAccent border border-purpleAccent/20">
+              2022
+            </span>
+            <h4 class="text-lg font-bold text-white mt-2">Commenced University Studies</h4>
+            <p class="text-sm text-mutedGray mt-1">
+              Enrolled at Jordan University of Science and Technology, embarking on deep-dive technical explorations in programming, computer science, and engineering mathematics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cv-section" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="glass-card rounded-3xl p-8 sm:p-14 border border-white/10 text-center relative overflow-hidden bg-gradient-to-b from-brandCard to-brandDark">
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyanAccent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-2xl mx-auto space-x-0 space-y-4">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-cyanAccent/10 text-cyanAccent mb-2 border border-cyanAccent/30">
+            <i class="fa-solid fa-file-arrow-down text-2xl"></i>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Let's build something meaningful.
+          </h2>
+
+          <p class="text-mutedGray text-sm sm:text-base leading-relaxed">
+            Interested in my detailed academic records, technical coursework, or project specifics? Download a clean, recruiter-ready copy of my curriculum vitae.
+          </p>
+
+          <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+            <!-- CV Download Button (configured to assets/Abdalluh_Alswalmeh_CV.pdf) -->
+            <a 
+              href="assets/Abdalluh_Alswalmeh_CV.pdf" 
+              download="Abdalluh_Alswalmeh_CV.pdf"
+              onclick="handleCvClick(event, 'download')"
+              class="px-7 py-3.5 rounded-xl font-mono text-xs sm:text-sm font-semibold bg-cyanAccent text-brandDark hover:bg-cyan-300 shadow-glow-cyan transition-all duration-300 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-download"></i>
+              <span>Download CV (.PDF)</span>
+            </a>
+
+            <!-- View CV Modal Trigger -->
+            <button 
+              onclick="openCvModal()"
+              class="px-7 py-3.5 rounded-xl font-mono text-xs sm:text-sm font-semibold bg-brandDark hover:bg-brandCardHover border border-white/10 text-white transition-all duration-300 flex items-center gap-2"
+            >
+              <i class="fa-regular fa-file-pdf text-purpleAccent"></i>
+              <span>Quick Preview CV</span>
+            </button>
+          </div>
+
+          <p class="text-[11px] font-mono text-mutedGray/70 pt-2">
+            Target file path: <span class="text-cyanAccent/80">assets/Abdalluh_Alswalmeh_CV.pdf</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="font-mono text-xs text-cyanAccent tracking-widest uppercase">06 // Connect</span>
+        <div class="h-[1px] bg-white/10 flex-grow"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Left: Contact Details -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Get in touch</h2>
+            <p class="text-mutedGray text-sm mt-2 leading-relaxed">
+              I am actively seeking junior and entry-level software engineering or AI opportunities. Feel free to connect for open positions, questions, or collaborative ideas.
+            </p>
+          </div>
+
+          <div class="space-y-4 pt-2">
+            <!-- Email Item -->
+            <div class="glass-card p-4 rounded-2xl flex items-center gap-4 border border-white/10 group">
+              <div class="w-12 h-12 rounded-xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-lg group-hover:scale-105 transition-transform">
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+              <div class="flex-grow">
+                <p class="text-xs font-mono text-mutedGray uppercase">Email Contact</p>
+                <!-- Clear placeholder for Abdalluh -->
+                <a href="mailto:abdalluh.alswalmeh.dev@example.com" class="text-sm font-medium text-white hover:text-cyanAccent transition-colors">
+                  abdalluh.alswalmeh.dev@example.com
+                </a>
+              </div>
+            </div>
+
+            <!-- LinkedIn Item -->
+            <div class="glass-card p-4 rounded-2xl flex items-center gap-4 border border-white/10 group">
+              <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg group-hover:scale-105 transition-transform">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </div>
+              <div class="flex-grow">
+                <p class="text-xs font-mono text-mutedGray uppercase">LinkedIn Profile</p>
+                <a href="https://linkedin.com/in/abdalluh-alswalmeh" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-white hover:text-cyanAccent transition-colors">
+                  linkedin.com/in/abdalluh-alswalmeh
+                </a>
+              </div>
+            </div>
+
+            <!-- GitHub Item -->
+            <div class="glass-card p-4 rounded-2xl flex items-center gap-4 border border-white/10 group">
+              <div class="w-12 h-12 rounded-xl bg-purpleAccent/10 text-purpleAccent flex items-center justify-center text-lg group-hover:scale-105 transition-transform">
+                <i class="fa-brands fa-github"></i>
+              </div>
+              <div class="flex-grow">
+                <p class="text-xs font-mono text-mutedGray uppercase">GitHub Codebase</p>
+                <a href="https://github.com/abdalluh-alswalmeh" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-white hover:text-cyanAccent transition-colors">
+                  github.com/abdalluh-alswalmeh
+                </a>
+              </div>
+            </div>
+
+            <!-- Location Item -->
+            <div class="glass-card p-4 rounded-2xl flex items-center gap-4 border border-white/10">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <p class="text-xs font-mono text-mutedGray uppercase">Current Location</p>
+                <p class="text-sm font-medium text-white">Jordan (Open to on-site & remote roles)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Modern Contact Form -->
+        <div class="lg:col-span-7">
+          <form id="contact-form" onsubmit="handleContactSubmit(event)" class="glass-card p-6 sm:p-10 rounded-3xl border border-white/10 space-y-6">
+            <h3 class="text-xl font-bold text-white">Send a Message</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Name -->
+              <div class="space-y-2">
+                <label for="name" class="block font-mono text-xs text-mutedGray">Your Name *</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  required 
+                  placeholder="e.g. Sarah Jenkins" 
+                  class="w-full bg-brandDark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-mutedGray/40 focus:outline-none focus:border-cyanAccent transition-colors"
+                >
+              </div>
+
+              <!-- Email -->
+              <div class="space-y-2">
+                <label for="email" class="block font-mono text-xs text-mutedGray">Your Email Address *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  required 
+                  placeholder="e.g. recruiter@company.com" 
+                  class="w-full bg-brandDark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-mutedGray/40 focus:outline-none focus:border-cyanAccent transition-colors"
+                >
+              </div>
+            </div>
+
+            <!-- Subject -->
+            <div class="space-y-2">
+              <label for="subject" class="block font-mono text-xs text-mutedGray">Subject *</label>
+              <input 
+                type="text" 
+                id="subject" 
+                required 
+                placeholder="Software Engineering Inquiry / Job Opportunity" 
+                class="w-full bg-brandDark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-mutedGray/40 focus:outline-none focus:border-cyanAccent transition-colors"
+              >
+            </div>
+
+            <!-- Message -->
+            <div class="space-y-2">
+              <label for="message" class="block font-mono text-xs text-mutedGray">Message *</label>
+              <textarea 
+                id="message" 
+                rows="4" 
+                required 
+                placeholder="Hello Abdalluh, we reviewed your graduation project and would like to discuss..." 
+                class="w-full bg-brandDark/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-mutedGray/40 focus:outline-none focus:border-cyanAccent transition-colors resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+              type="submit" 
+              id="submit-btn" 
+              class="w-full py-3.5 rounded-xl font-mono text-xs sm:text-sm font-semibold bg-cyanAccent text-brandDark hover:bg-cyan-300 shadow-glow-cyan transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>Send Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 bg-brandDark py-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-lg bg-cyanAccent/10 border border-cyanAccent/30 flex items-center justify-center font-mono font-bold text-xs text-cyanAccent">
+          AA
+        </div>
+        <p class="text-xs text-mutedGray font-mono">
+          &copy; <span id="year">2026</span> Abdalluh Hider Said Alswalmeh. All rights reserved.
+        </p>
+      </div>
+
+      <div class="flex items-center space-x-6 text-sm text-mutedGray font-mono text-xs">
+        <a href="#home" class="hover:text-cyanAccent transition-colors">Top</a>
+        <a href="#about" class="hover:text-cyanAccent transition-colors">About</a>
+        <a href="#projects" class="hover:text-cyanAccent transition-colors">Projects</a>
+        <a href="#contact" class="hover:text-cyanAccent transition-colors">Contact</a>
+      </div>
+
+      <!-- Back to Top Button -->
+      <button 
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+        class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-mutedGray hover:text-cyanAccent hover:border-cyanAccent transition-all"
+        aria-label="Back to top"
+      >
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Project Details Modal -->
+  <div id="project-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-brandDark/80 backdrop-blur-md">
+    <div class="relative w-full max-w-2xl glass-card rounded-3xl p-6 sm:p-8 border border-white/15 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeProjectModal()" class="absolute top-6 right-6 w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 text-mutedGray hover:text-white flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div id="modal-content" class="space-y-4">
+        <!-- Dynamically injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Message Toast Modal (replaces alert) -->
+  <div id="toast-modal" class="fixed bottom-6 right-6 z-[130] hidden glass-card p-4 rounded-2xl border border-cyanAccent/40 shadow-glow-cyan max-w-sm flex items-start gap-3">
+    <div class="text-cyanAccent text-xl mt-0.5" id="toast-icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <div class="flex-grow">
+      <h4 class="text-xs font-bold font-mono text-white" id="toast-title">Notification</h4>
+      <p class="text-xs text-mutedGray mt-0.5 leading-snug" id="toast-message">Message details</p>
+    </div>
+    <button onclick="closeToast()" class="text-mutedGray hover:text-white text-xs">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <script>
+    // 1. Current Year Footer update
+    document.getElementById('year').textContent = new Date().getFullYear() || '2026';
+
+    // 2. Custom Cursor Tracking (Desktop Only)
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+
+    if (window.matchMedia('(pointer: fine)').matches && cursorDot && cursorRing) {
+      window.addEventListener('mousemove', (e) => {
+        cursorDot.style.left = `${e.clientX}px`;
+        cursorDot.style.top = `${e.clientY}px`;
+        
+        cursorRing.style.left = `${e.clientX}px`;
+        cursorRing.style.top = `${e.clientY}px`;
+      });
+
+      document.querySelectorAll('a, button, input, textarea').forEach(elem => {
+        elem.addEventListener('mouseenter', () => {
+          cursorRing.style.transform = 'translate(-50%, -50%) scale(1.6)';
+          cursorRing.style.borderColor = '#00E5FF';
+        });
+        elem.addEventListener('mouseleave', () => {
+          cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
+          cursorRing.style.borderColor = 'rgba(0, 229, 255, 0.5)';
+        });
+      });
+    }
+
+    // 3. Scroll Progress Indicator & Navbar Glass Effect
+    const scrollProgress = document.getElementById('scroll-progress');
+    const mainNav = document.getElementById('main-nav');
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (scrollProgress) scrollProgress.style.width = scrolled + '%';
+
+      if (winScroll > 40) {
+        mainNav.classList.add('bg-brandDark/85', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+      } else {
+        mainNav.classList.remove('bg-brandDark/85', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+      }
+    });
+
+    // 4. Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // 5. Animated Number Counters on Viewport Entry
+    let countersStarted = false;
+    function runCounters() {
+      const counters = document.querySelectorAll('.counter-number');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const speed = target / 25;
+        const updateCount = () => {
+          count += speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count);
+            setTimeout(updateCount, 40);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    }
+
+    const statsSection = document.getElementById('stats-counter-container');
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !countersStarted) {
+        countersStarted = true;
+        runCounters();
+      }
+    }, { threshold: 0.3 });
+    if (statsSection) observer.observe(statsSection);
+
+    // 6. Interactive AI & Information Retrieval Pipeline Data
+    const pipelineData = [
+      {
+        step: "01 // Foundation",
+        title: "Raw Document Collection",
+        tag: "Dataset: 20 Newsgroups",
+        desc: "The pipeline gathers unformatted text files across thousands of discussion categories. These documents contain noisy headers, varied casing, and non-essential conversational tags that must be structured.",
+        tech: "Corpus = [doc_1, doc_2, ... doc_N] across topics (sci.med, comp.graphics, rec.autos)"
+      },
+      {
+        step: "02 // Normalization",
+        title: "Text Preprocessing & Cleaning",
+        tag: "Technique: Lowercase & Cleaning",
+        desc: "Converts all text to lowercase to ensure casing consistency (e.g., 'Python' matches 'python'). Removes punctuation, numbers, and excess whitespace.",
+        tech: "clean_text = re.sub(r'[^a-zA-Z\\s]', '', raw_text.lower())"
+      },
+      {
+        step: "03 // Lexical Analysis",
+        title: "Tokenization & Porter Stemming",
+        tag: "Technique: Stop-Words + Porter Stemmer",
+        desc: "Splits continuous text into individual term tokens. Strips high-frequency functional words ('the', 'is', 'at') and applies Porter Stemming to reduce inflected words to root form ('retrieval', 'retrieved' -> 'retriev').",
+        tech: "tokens = [stemmer.stem(w) for w in tokens if w not in stop_words]"
+      },
+      {
+        step: "04 // Statistical Weighting",
+        title: "TF-IDF Weighting Calculation",
+        tag: "Technique: Term Frequency x Inverse Document Frequency",
+        desc: "Balances term frequency (TF) within a document against how rare that term is across the entire corpus (IDF). Common terms receive lower weights, while distinctive terms receive higher importance.",
+        tech: "TF-IDF(t, d, D) = TF(t, d) * log(Total_Docs / (1 + Doc_Count(t)))"
+      },
+      {
+        step: "05 // Representation",
+        title: "Vector Space Model Representation",
+        tag: "Technique: Vocabulary Embeddings",
+        desc: "Transforms each document and user search query into a dense mathematical vector within an N-dimensional vocabulary space, enabling linear algebraic calculations.",
+        tech: "V_doc = [w_1, w_2, ..., w_|V|] where w_i represents TF-IDF score for term i"
+      },
+      {
+        step: "06 // Geometric Metric",
+        title: "Cosine Similarity Matching",
+        tag: "Technique: Cosine of Vector Angle",
+        desc: "Calculates the cosine of the angle between the query vector and every document vector in the corpus. Documents pointing in similar geometric directions earn higher match scores irrespective of length.",
+        tech: "Cosine_Sim(Q, D) = (Q • D) / (||Q|| * ||D||)"
+      },
+      {
+        step: "07 // Sorting Engine",
+        title: "Relevance Ranking",
+        tag: "Technique: Priority Queue / Sorting",
+        desc: "Ranks candidate documents in descending order of their computed similarity metric, prioritizing the most semantically relevant documents for the search query.",
+        tech: "ranked_list = sorted(document_scores, key=lambda x: x.similarity, reverse=True)"
+      },
+      {
+        step: "08 // Output",
+        title: "Top-K Search Results",
+        tag: "Technique: Result Presentation",
+        desc: "Delivers the Top-K most relevant newsgroup posts to the user with confidence scores, highlighted query stems, and metadata.",
+        tech: "return ranked_list[:K]  # e.g., Top 10 most relevant documents"
+      }
+    ];
+
+    function setPipelineStep(index) {
+      const data = pipelineData[index];
+      const buttons = document.querySelectorAll('.pipeline-btn');
+      buttons.forEach((btn, i) => {
+        if (i === index) {
+          btn.classList.add('border-cyanAccent', 'bg-cyanAccent/10');
+          btn.classList.remove('border-white/10');
+        } else {
+          btn.classList.remove('border-cyanAccent', 'bg-cyanAccent/10');
+          btn.classList.add('border-white/10');
+        }
+      });
+
+      document.getElementById('pipeline-step-badge').textContent = data.step;
+      document.getElementById('pipeline-title').textContent = data.title;
+      document.getElementById('pipeline-dataset-tag').textContent = data.tag;
+      document.getElementById('pipeline-description').textContent = data.desc;
+      document.getElementById('pipeline-technical-box').innerHTML = `<span class="text-mutedGray">// Technical Formula / Operation:</span><br>${data.tech}`;
+    }
+
+    // 7. Project Modal Deep Dive
+    const projectDetails = {
+      sgpms: {
+        title: "SGPMS – Student Graduation Project Management System",
+        category: "Featured Project • Web & Relational Database",
+        overview: "A comprehensive institutional management system designed to streamline the administration of university graduation projects, student team tracking, and committee evaluations.",
+        details: [
+          "Developed web portal allowing students and faculty to access project listings, requirements, and project stages.",
+          "Implemented full CRUD (Create, Read, Update, Delete) capability allowing authorized staff to manage student and project records.",
+          "Designed and integrated relational schema using Oracle SQL, ensuring strict data integrity, foreign key relations, and indexing.",
+          "Constructed responsive HTML/CSS/JavaScript interfaces connected to backend logic for data retrieval and submission."
+        ],
+        techStack: ["SQL", "Oracle Database", "HTML5", "CSS3", "JavaScript", "Backend Development"]
+      },
+      searchengine: {
+        title: "Mini Search Engine & Information Retrieval System",
+        category: "Information Retrieval & Natural Language Processing",
+        overview: "An Information Retrieval engine developed from first principles to parse, index, and query the 20 Newsgroups corpus with high accuracy.",
+        details: [
+          "Implemented document preprocessing pipeline: case folding, tokenization, and stop-word filtering.",
+          "Integrated Porter Stemming to map derived words to morphological roots, reducing vocabulary dimensionality.",
+          "Built a TF-IDF calculation matrix across all indexed vocabulary terms.",
+          "Computed Cosine Similarity between dynamic search query vectors and document vectors.",
+          "Ranked and output the Top-K relevant documents with corresponding similarity metrics."
+        ],
+        techStack: ["Python", "Information Retrieval", "TF-IDF", "Cosine Similarity", "20 Newsgroups Dataset", "NLP Concepts"]
+      }
+    };
+
+    function openProjectModal(key) {
+      const proj = projectDetails[key];
+      if (!proj) return;
+      const modal = document.getElementById('project-modal');
+      const content = document.getElementById('modal-content');
+
+      let techBadges = proj.techStack.map(t => `<span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-xs font-mono text-cyanAccent">${t}</span>`).join(' ');
+      let pointsList = proj.details.map(pt => `<li class="flex items-start gap-2 text-sm text-mutedGray"><i class="fa-solid fa-arrow-right text-cyanAccent text-xs mt-1.5"></i><span>${pt}</span></li>`).join('');
+
+      content.innerHTML = `
+        <div class="border-b border-white/10 pb-4">
+          <span class="text-xs font-mono text-purpleAccent">${proj.category}</span>
+          <h3 class="text-2xl font-bold text-white mt-1">${proj.title}</h3>
+        </div>
+        <p class="text-sm text-mutedGray leading-relaxed">${proj.overview}</p>
+        <div class="space-y-2 pt-2">
+          <h4 class="text-xs font-mono uppercase text-white font-semibold tracking-wider">Key Architecture & Highlights:</h4>
+          <ul class="space-y-2">${pointsList}</ul>
+        </div>
+        <div class="pt-4 border-t border-white/10">
+          <h4 class="text-xs font-mono uppercase text-mutedGray font-semibold tracking-wider mb-2">Technologies Used:</h4>
+          <div class="flex flex-wrap gap-2">${techBadges}</div>
+        </div>
+        <div class="pt-4 flex justify-end">
+          <button onclick="closeProjectModal()" class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs">Close Details</button>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('project-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // 8. CV Modal Preview
+    function openCvModal() {
+      const modal = document.getElementById('project-modal');
+      const content = document.getElementById('modal-content');
+
+      content.innerHTML = `
+        <div class="border-b border-white/10 pb-4">
+          <span class="text-xs font-mono text-cyanAccent">Curriculum Vitae Preview</span>
+          <h3 class="text-2xl font-bold text-white mt-1">Abdalluh Hider Said Alswalmeh</h3>
+          <p class="text-xs text-mutedGray mt-0.5">Fresh Graduate • Jordan University of Science and Technology (2022–2026)</p>
+        </div>
+        <div class="space-y-4 text-sm text-mutedGray py-2 font-mono text-xs">
+          <div class="p-3 bg-white/5 rounded-xl border border-white/10">
+            <span class="text-white font-semibold block mb-1">Education</span>
+            Bachelor's Degree in Software Engineering / Computer Science<br>
+            Jordan University of Science and Technology (2022 – 2026)
+          </div>
+          <div class="p-3 bg-white/5 rounded-xl border border-white/10">
+            <span class="text-white font-semibold block mb-1">Key Skillsets</span>
+            Python, JavaScript, Flask, HTML5, CSS3, SQL, Oracle, MySQL, Information Retrieval, TF-IDF, Git/GitHub.
+          </div>
+          <div class="p-3 bg-white/5 rounded-xl border border-white/10">
+            <span class="text-white font-semibold block mb-1">Flagship Projects</span>
+            • SGPMS (Student Graduation Project Management System)<br>
+            • Mini Search Engine (20 Newsgroups, TF-IDF, Vector Space Model)
+          </div>
+        </div>
+        <div class="pt-4 flex flex-wrap justify-between items-center gap-3 border-t border-white/10">
+          <span class="text-[11px] font-mono text-mutedGray">File location: assets/Abdalluh_Alswalmeh_CV.pdf</span>
+          <div class="flex gap-2">
+            <button onclick="closeProjectModal()" class="px-4 py-2 rounded-xl bg-white/10 text-white font-mono text-xs">Close</button>
+            <a href="assets/Abdalluh_Alswalmeh_CV.pdf" download class="px-4 py-2 rounded-xl bg-cyanAccent text-brandDark font-mono text-xs font-semibold">Download PDF</a>
+          </div>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    // 9. Toast Notification Handler (replaces standard alerts)
+    function showToast(title, message, isSuccess = true) {
+      const toast = document.getElementById('toast-modal');
+      const toastTitle = document.getElementById('toast-title');
+      const toastMsg = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastTitle.textContent = title;
+      toastMsg.textContent = message;
+      toastIcon.innerHTML = isSuccess ? '<i class="fa-solid fa-circle-check text-cyanAccent"></i>' : '<i class="fa-solid fa-circle-exclamation text-yellow-400"></i>';
+
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        closeToast();
+      }, 5000);
+    }
+
+    function closeToast() {
+      const toast = document.getElementById('toast-modal');
+      toast.classList.add('hidden');
+    }
+
+    // 10. Contact Form Submission
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+
+      showToast(
+        "Message Registered!",
+        `Thank you ${name}. Your message regarding "${subject}" has been queued. Abdalluh will respond to ${email} promptly.`,
+        true
+      );
+      document.getElementById('contact-form').reset();
+    }
+
+    // 11. CV Download click helper
+    function handleCvClick(e, action) {
+      // Show notification confirming PDF reference path
+      showToast(
+        "CV Document Request",
+        "Loading assets/Abdalluh_Alswalmeh_CV.pdf. Replace this file with your official resume document.",
+        true
+      );
+    }
+
+    // 12. Lightweight Interactive Particle Background Canvas
+    (function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const numParticles = Math.min(Math.floor(window.innerWidth / 20), 50);
+      const particles = [];
+
+      for (let i = 0; i < numParticles; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 1.5 + 0.5,
+          color: Math.random() > 0.5 ? 'rgba(0, 229, 255, 0.4)' : 'rgba(124, 58, 237, 0.3)'
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            if (dist < 110) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(255, 255, 255, ${0.08 * (1 - dist / 110)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>
